@@ -1,0 +1,29 @@
+﻿@model PrikaziTakmicenja
+@{
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Skola</th>
+            <th>Razred</th>
+            <th>Datum</th>
+            <th>Predmet</th>
+            <th>Najbolji ucesnik</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+        <tbody>
+            @foreach (var item in Model.Rows)
+            {
+                <tr>
+                    <td>@item.Skola</td>
+                    <td>@item.Razred</td>
+                    <td>@item.Datum</td>
+                    <td>@item.Predmet</td>
+                    <td>@item.NajboljiUcesnikSkola | @item.NajboljiUcesnikOdjeljenje | @item.NajboljiUcesnikImePrezime</td>
+                    <td><a asp-action="Rezultati" asp-route-id="@item.TakmicenjeID">Rezultati</a></td>
+                </tr>
+            }
+        </tbody>
+</table>
+<a asp-action="Dodaj" asp-route-id="@Model.sID" class="btn btn-primary" >Dodaj</a>

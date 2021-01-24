@@ -1,0 +1,26 @@
+﻿@model PrikaziSkole
+@{
+}
+<form asp-action="Takmicenja" ajax-poziv="da" ajax-rezultat="testAjaxDiv" method="post">
+    <table class="table table-striped">
+        <tr>
+            <td width="150">Filter za skole:</td>
+            <td><select asp-for="@Model.SkolaID" asp-items="@Model.Skole">
+                
+                </select></td>
+        </tr>
+        <tr>
+            <td>Filter za predmete:</td>
+            <td><select asp-for="@Model.PredmetID" asp-items="@Model.Predmeti"></select></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-primary" >Prikazi</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+    <div id="testAjaxDiv">
+    </div>
+

@@ -1,0 +1,18 @@
+﻿@model DodajUcesnika
+@{
+}
+<form asp-action="SnimiUcesnika" asp-route-id="@Model.TakmicenjeID" method="post">
+    <table class="table table-striped">
+        <tr>
+            <td>Ucesnik:</td>
+            <td><select asp-for="@Model.UcesnikID" asp-items="@Model.Ucesnik">
+                
+                </select></td>
+        </tr>
+        <tr>
+            <td>Bodovi:</td>
+            <td><input type="text" asp-for="@Model.Bodovi" value="@Model.Bodovi" /></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">Snimi</button>
+</form>

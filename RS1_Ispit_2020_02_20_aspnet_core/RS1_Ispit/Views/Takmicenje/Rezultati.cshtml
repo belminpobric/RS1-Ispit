@@ -1,0 +1,102 @@
+﻿@model RezultatiTakmicenja
+@{
+}
+
+<h2>Rezultati takmicenja</h2>
+<form asp-action="Zakljucaj" method="post" asp-route-id="@Model.TakmicenjeID">
+    <table class="table table-condensed">
+        <tr>
+            <td>
+                Skola domacin:
+            </td>
+            <td>
+                @Model.SkolaDomacin
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Predmet:
+            </td>
+            <td>
+                @Model.Predmet
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Razred:
+            </td>
+            <td>
+                @Model.Razred
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Datum:
+            </td>
+            <td>
+                @Model.Datum
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-primary">Zakljucaj</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div id="ajaxDiv">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Odjeljenje</th>
+                <th>Broj u dnevniku</th>
+                <th>Pristupio</th>
+                <th>Rezultat bodovi(max 100)</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UcesniciRows)
+            {
+            <tr>
+                <td>@item.Odjeljenje</td>
+                <td>@item.BrojUDnevniku</td>
+                @if (Model.isZakljucano)
+                {
+                    @if (@item.IsPristupio)
+                    {
+                        <td>
+                            <a class="btn btn-success" href="#" style="cursor:default">DA</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn btn-danger" href="#" style="cursor:default">NE</a>
+                        </td>
+                    }
+                }
+                else
+                {
+                    @if (@item.IsPristupio)
+                    {
+                        <td>
+                            <a class="btn btn-success" asp-action="Pristupio" asp-route-id="@item.UcesnikID">DA</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="btn btn-danger" asp-action="Pristupio" asp-route-id="@item.UcesnikID">NE</a>
+                        </td>
+                    }
+                }
+                <td>@item.Bodovi</td>
+                <td><a asp-action="DodajUcesnika" asp-route-id="@Model.TakmicenjeID" class="btn btn-primary" ajax-poziv="da" ajax-rezultat="ajaxDiv">Uredi</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="DodajUcesnika" asp-route-id="@Model.TakmicenjeID" class="btn btn-primary" ajax-poziv="da" ajax-rezultat="ajaxDiv">Dodaj ucesnika</a><br /><br />
+    <a asp-action="Dodaj" class="btn btn-primary">Novo takmicenje</a>
+</div>
