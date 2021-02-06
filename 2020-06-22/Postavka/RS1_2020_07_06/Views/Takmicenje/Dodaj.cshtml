@@ -1,0 +1,24 @@
+﻿@model DodajTakmicenjeVM
+@{
+}
+<h2>Dodavanje takmicenja</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Snimi" method="post">
+            <div class="form-control">
+                <label asp-for="Predmet" class="control-label">Predmet: </label>
+                <select asp-for="PredmetID" asp-items="Model.Predmet" class="form-group"></select>
+            </div>
+            <div class="form-control">
+                <label asp-for="Skola" class="control-label">Skola: </label>
+                <select asp-for="SkolaID" asp-items="Model.Skola" class="form-group"></select>
+            </div>
+            <div class="form-control">
+                <label asp-for="Datum" class="control-label">Datum: </label>
+                <input type="datetime" asp-for="Datum" value="@Model.Datum" readonly />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Snimi</button>
+        </form>
+    </div>
+</div>

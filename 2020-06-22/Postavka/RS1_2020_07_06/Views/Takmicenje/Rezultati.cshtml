@@ -1,0 +1,64 @@
+﻿@model RezultatiTakmicenjaVM
+@{
+}
+<h2>Rezultati takmicenja</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form action="/" method="post">
+            <div class="form-control">
+                <label class="control-label" asp-for="SkolaDomacin">Skola domacin: </label>
+                <input type="text" asp-for="SkolaDomacin" value="@Model.SkolaDomacin" readonly />
+            </div>
+            <div class="form-control">
+                <label class="control-label" asp-for="Predmet">Predmet: </label>
+                <input type="text" asp-for="Predmet" value="@Model.Predmet" readonly />
+            </div>
+            <div class="form-control">
+                <label class="control-label" asp-for="Razred"> Razred : </label>
+                <input type="text" asp-for="Razred" value="@Model.Razred" readonly />
+            </div>
+            <div class="form-control">
+                <label class="control-label" asp-for="Datum"> Datum : </label>
+                <input type="datetime" asp-for="Datum" value="@Model.Datum" readonly />
+            </div>
+            <button type="submit">Zakljucaj</button>
+        </form>
+    </div>
+
+</div>
+<div id="ajaxDiv">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Odjeljenje</th>
+                <th>Broj u dnevniku</th>
+                <th>Pristupio</th>
+                <th>Rezultat bodovi</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Rows)
+        {
+            <tr>
+                <td>@item.Odjeljenje</td>
+                <td>@item.BrojUdnevniku</td>
+                @if (item.IsPristupio)
+                {
+                    <td><a asp-action="Pristupio" asp-route-id="@item.UcesnikID" class="btn btn-success">DA</a></td>
+                }
+                else
+                {
+                    <td><a asp-action="Pristupio" asp-route-id="@item.UcesnikID" class="btn btn-danger">NE</a></td>
+                }
+                <td>@item.bodovi</td>
+                <td><a href="#">Uredi</a></td>
+            </tr>
+        }
+
+    </table>
+
+    <br />
+    <br />
+</div>
+<a asp-action="DodajUcesnika" asp-route-id="@Model.TakmicenjeID" ajax-poziv="da" ajax-rezultat="ajaxDiv" class="btn btn-primary">Dodaj ucesnika</a>
+<a asp-action="Dodaj" asp-route-id="@Model.SkolaID" class="btn btn-primary">Novo takmicenje</a>

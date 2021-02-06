@@ -1,0 +1,29 @@
+﻿@model DodajUcesnikaVM
+@{
+}
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SnimiUcesnika" method="post">
+            <input type="text" value="@Model.TakmicenjeID" asp-for="@Model.TakmicenjeID" hidden />
+
+            <div class="form-control">
+                <label class="control-label" asp-for="Ucesnik">Ucesnik: </label>
+                <select asp-for="UcesnikID" asp-items="@Model.Ucesnik" class="form-group"></select>
+            </div>
+            <div class="form-control">
+                <label class="control-label" asp-for="Bodovi">Bodovi:</label>
+                <input type="text" value="@Model.Bodovi" asp-for="@Model.Bodovi" />
+            </div>
+            <button type="submit" class="btn btn-primary">Snimi</button>
+        </form>
+
+    </div>
+
+</div>
+<br />
+<br />
+<br />

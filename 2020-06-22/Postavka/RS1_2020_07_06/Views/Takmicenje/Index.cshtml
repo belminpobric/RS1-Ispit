@@ -1,0 +1,19 @@
+﻿@model PrikazSkolaVM
+@{
+}
+<h2>Prikaz takmicenja</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PrikazTakmicenja" ajax-poziv="da" ajax-rezultat="testAjax" method="post">
+            <div class="form-control">
+                <label class="control-label" asp-for="Skola">Filter za skole: </label>
+                <select asp-for="SkolaID" asp-items="Model.Skola"></select>
+            </div>
+                <button type="submit" class="btn btn-primary">Prikazi</button>
+        </form>
+    </div>
+
+</div>
+<div id="testAjax">
+
+</div>
