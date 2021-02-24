@@ -1,0 +1,34 @@
+﻿@model TakmicenjePrikazVM
+@{
+}
+<h2>Skola domacin : @Model.Skola</h2>
+<h2>Razred: @Model.Razred</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Takmicenje ID</th>
+            <th>Predmet</th>
+            <th>Razred</th>
+            <th>Datum</th>
+            <th>Broj ucesnika koji nisu pristupili</th>
+            <th>Najbolji ucesnik (Skola | Odjeljenje | Ime i prezime)</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Rows)
+        {
+            <tr>
+                <td>@item.TakmicenjeID</td>
+                <td>@item.Predmet</td>
+                <td>@item.Razred</td>
+                <td>@item.Datum</td>
+                <td>@item.BrojUcesnikaKojiNisuPristupili</td>
+                <td>@item.NajUcesnik</td>
+                <td><a asp-action="Rezultati" asp-route-id="@item.TakmicenjeID">Rezultati</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Dodaj" class="btn btn-default" asp-route-id="@Model.SkolaID">Dodaj</a>
